@@ -1,0 +1,107 @@
+                                //Bits Magic
+import java.util.*;
+public class Main{
+    
+    public static boolean isEven(int num){
+        if((num&1) == 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public static int countSetBit(int num){
+        int count = 0;
+        
+        // while(num != 0){
+        //     if((num&1)!=0){
+        //         count++;
+        //     }
+        //     num = (num>>1);
+        // }
+        
+        while(num != 0){
+            int rmsb = (num & (-num));
+            num = num-rmsb;
+            count++;
+        }
+        
+        return count;
+    }
+    
+    public static String rightMostSetBitMask(int num){
+        int rmsbm = (num & (-num));
+        String ans = Integer.toBinaryString(rmsbm);
+        return ans;
+    }
+    
+    public static int rightMostSetBit(int num){
+        int idx = 0;
+        while(num != 0){
+            if((num & 1)==1){
+                return idx;
+            } else {
+                idx++;
+                num = num >> 1;
+            }            
+        }
+        return -1;
+    }
+    
+    public static boolean isKthBitSet(int num,int k){
+        int a = 1;
+        a = (a<<(k-1));
+        if((num & a) == 0){
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    public static boolean isKthBitUnset(int num,int k){
+        int a = 1;
+        a = (a << (k-1));
+        if((num & a) == 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public static int flipKthBit(int num,int k){
+        int a = 1;
+        a = (a<<(k-1));
+        int ans = (num^a);
+        return ans;
+    }
+    
+    public static int leftMostSetBit(int num){
+        int count = 0;
+        int a = 1073741824;
+        System.out.println(Integer.toBinaryString(a));
+        while(num != 0){
+            if((num & a) == 0){
+                count ++;
+            } else {
+                count++;
+                return count;
+            }
+            num = (num << 1);
+        }
+        return -1;
+    }
+    
+    public static void main(String[] args){
+        int num = 54;
+        System.out.println(isEven(num));
+        System.out.println(countSetBit(num));
+        System.out.println(rightMostSetBitMask(num));
+        System.out.println(rightMostSetBit(num));
+        System.out.println(isKthBitSet(num,6));
+        System.out.println(isKthBitUnset(num,6));
+        System.out.println(flipKthBit(num,2));
+        System.out.println(leftMostSetBit(num));
+    }
+    
+    
+}
